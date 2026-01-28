@@ -66,82 +66,108 @@
     <div class="faction-card intro" style="border-color:#ffd700;">
         <div class="faction-title" style="color:#ffd700;">Welcome to HEX Wars</div>
         <div class="faction-desc">
-            HEX Wars is a growing universe—stories, games, and systems evolving together. I’m building an interconnected
-            world of factions, characters, and conflicts across multiple formats: tabletop/board games, online tools,
+            HEX Wars is a growing universe with stories, games, and systems evolving together. I’m building an interconnected
+            world of factions, characters, and conflicts across multiple formats: tabletop/board games, written stories,
             and web experiences. This hub introduces the universe, links to playable tools, and tracks progress across
             lore, game design, and programming.
         </div>
         <div class="faction-section-title" style="color:#ffd700;">Explore the Universe</div>
         <ul class="passive-list">
             <li><strong>Lore</strong> — Read stories, world history, and faction myths.</li>
-            <li><strong>Games</strong> — Board game rulesets, online versions, and character creation.</li>
+            <li><strong>Games</strong> — Board game rulesets, online version support, and character creation.</li>
             <li><strong>Programming</strong> — Battle/Resource calculators and site updates.</li>
         </ul>
     </div>
 
-    <!-- Organized Updates: Lore / Games / Programming -->
-    <div class="calculator-container" style="grid-template-columns: 1fr 1fr;">
-        <!-- Lore -->
-        <div class="army-card terrain-card">
-            <div class="card-header terrain-header">
-                <span class="header-icon">📚</span>
-                <h2>Lore</h2>
+    <!-- Photo Gallery Section -->
+    <div class="photo-gallery-section">
+        <div class="faction-card" style="border-color:#ffd700;">
+            <div class="card-header resources-header">
+                <span class="header-icon">📸</span>
+                <h2>Gallery</h2>
             </div>
             <div class="card-content">
-                <div class="faction-section-title">Roadmap</div>
-                <ul class="strategy-list">
-                    <li>Foundational world timeline and key eras.</li>
-                    <li>Faction origin stories and cultural notes.</li>
-                    <li>Short stories and character spotlights.</li>
-                </ul>
-                <div class="faction-section-title">Latest Additions</div>
-                <ul class="strategy-list">
-                    <li>Faction pages scaffolded and themed.</li>
-                    <li>Lore landing with epic hero section.</li>
-                </ul>
+                <div class="photo-gallery-container">
+                    <div class="photo-gallery-wrapper">
+                        <div class="photo-gallery-track" id="photoGallery">
+                            <!-- Images will be loaded dynamically from static/images/homepage-photos/ -->
+                        </div>
+                    </div>
+                    <div class="photo-gallery-controls">
+                        <button class="gallery-btn prev-btn" id="prevPhoto" aria-label="Previous photo">‹</button>
+                        <button class="gallery-btn next-btn" id="nextPhoto" aria-label="Next photo">›</button>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Games -->
-        <div class="army-card attacker-card">
-            <div class="card-header attacker-header">
-                <span class="header-icon">🎲</span>
-                <h2>Games</h2>
+    <!-- Dev Updates Section -->
+    <div class="dev-updates-section">
+        <h2 class="dev-updates-heading">DEV UPDATES</h2>
+        <div class="calculator-container dev-updates-grid">
+            <!-- Lore -->
+            <div class="army-card terrain-card">
+                <div class="card-header terrain-header">
+                    <span class="header-icon">📚</span>
+                    <h3>Lore</h3>
+                </div>
+                <div class="card-content">
+                    <div class="faction-section-title">Roadmap</div>
+                    <ul class="strategy-list">
+                        <li>Foundational world timeline and key eras.</li>
+                        <li>Faction origin stories and cultural notes.</li>
+                        <li>Short stories and character spotlights.</li>
+                    </ul>
+                    <div class="faction-section-title">Latest Additions</div>
+                    <ul class="strategy-list">
+                        <li>Faction pages scaffolded and themed.</li>
+                        <li>Lore landing with epic hero section.</li>
+                    </ul>
+                </div>
             </div>
-            <div class="card-content">
-                <div class="faction-section-title">Roadmap</div>
-                <ul class="strategy-list">
-                    <li>Board game core rules and scenarios.</li>
-                    <li>Online battle sandbox and faction builder.</li>
-                    <li>Character creation and inventory systems.</li>
-                </ul>
-                <div class="faction-section-title">Latest Additions</div>
-                <ul class="strategy-list">
-                    <li>Faction detail references for unit stats.</li>
-                    <li>Battle results visualization polish.</li>
-                </ul>
-            </div>
-        </div>
 
-        <!-- Programming -->
-        <div class="army-card defender-card">
-            <div class="card-header defender-header">
-                <span class="header-icon">🛠️</span>
-                <h2>Programming</h2>
+            <!-- Games -->
+            <div class="army-card attacker-card">
+                <div class="card-header attacker-header">
+                    <span class="header-icon">🎲</span>
+                    <h3>Games</h3>
+                </div>
+                <div class="card-content">
+                    <div class="faction-section-title">Roadmap</div>
+                    <ul class="strategy-list">
+                        <li>Board game core rules and scenarios.</li>
+                        <li>Online battle sandbox and faction builder.</li>
+                        <li>Character creation and inventory systems.</li>
+                    </ul>
+                    <div class="faction-section-title">Latest Additions</div>
+                    <ul class="strategy-list">
+                        <li>Faction detail references for unit stats.</li>
+                        <li>Battle results visualization polish.</li>
+                    </ul>
+                </div>
             </div>
-            <div class="card-content">
-                <div class="faction-section-title">Roadmap</div>
-                <ul class="strategy-list">
-                    <li>Battle Calculator API integration and testing.</li>
-                    <li>Resource Calculator and kingdom systems.</li>
-                    <li>Unified UI components and accessibility passes.</li>
-                </ul>
-                <div class="faction-section-title">Latest Additions</div>
-                <ul class="strategy-list">
-                    <li>Top-right navigation panel and overlay.</li>
-                    <li>Responsive cards and themed headers.</li>
-                    <li>Improved notifications and modal styles.</li>
-                </ul>
+
+            <!-- Programming -->
+            <div class="army-card defender-card">
+                <div class="card-header defender-header">
+                    <span class="header-icon">🛠️</span>
+                    <h3>Programming</h3>
+                </div>
+                <div class="card-content">
+                    <div class="faction-section-title">Roadmap</div>
+                    <ul class="strategy-list">
+                        <li>Battle Calculator API integration and testing.</li>
+                        <li>Resource Calculator and kingdom systems.</li>
+                        <li>Unified UI components and accessibility passes.</li>
+                    </ul>
+                    <div class="faction-section-title">Latest Additions</div>
+                    <ul class="strategy-list">
+                        <li>Top-right navigation panel and overlay.</li>
+                        <li>Responsive cards and themed headers.</li>
+                        <li>Improved notifications and modal styles.</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -199,6 +225,103 @@
             });
 
             syncAccountUI();
+
+            // Photo Gallery Functionality
+            const photoGallery = document.getElementById('photoGallery');
+            const prevBtn = document.getElementById('prevPhoto');
+            const nextBtn = document.getElementById('nextPhoto');
+            let currentIndex = 0;
+            let photos = [];
+            let autoScrollInterval = null;
+
+            // Load images from homepage-photos folder
+            function loadGalleryImages() {
+                // List of image filenames - add your images to static/images/homepage-photos/
+                const imageFiles = [
+                    // Add your image filenames here, e.g.:
+                    '3152928022977333376.JPG',
+                    'IMG_6757.jpeg',
+                    'IMG_6761.jpeg',
+                    'IMG_6764.jpeg',
+                    'IMG_7824.jpeg',
+                    'IMG_7848.jpeg',
+                    'IMG_7850.jpeg',
+                    'IMG_7863.jpeg',
+                    'IMG_5987.jpeg',
+                    'IMG_5984.jpeg',
+                    'IMG_2116.jpeg',
+                    'IMG_0544.jpeg',
+                    'Hex_wars_type.PNG',
+                ];
+
+                // If no images specified, try to load common image formats
+                if (imageFiles.length === 0) {
+                    // For now, we'll create placeholder divs that can be replaced with actual images
+                    // Users can add images to the folder and update this list
+                    return;
+                }
+
+                photos = imageFiles.map((file, index) => {
+                    const img = document.createElement('div');
+                    img.className = 'gallery-photo';
+                    img.style.backgroundImage = `url('static/images/homepage-photos/${file}')`;
+                    img.setAttribute('data-index', index);
+                    return img;
+                });
+
+                photos.forEach(photo => photoGallery.appendChild(photo));
+                
+                if (photos.length > 0) {
+                    updateGallery();
+                    startAutoScroll();
+                } else {
+                    // Show placeholder message if no images
+                    photoGallery.innerHTML = '<div class="gallery-placeholder"><p>Add images to <code>static/images/homepage-photos/</code> to see the gallery</p></div>';
+                }
+            }
+
+            function updateGallery() {
+                if (photos.length === 0) return;
+                
+                photos.forEach((photo, index) => {
+                    photo.style.transform = `translateX(${(index - currentIndex) * 100}%)`;
+                    photo.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            function nextPhoto() {
+                if (photos.length === 0) return;
+                currentIndex = (currentIndex + 1) % photos.length;
+                updateGallery();
+                resetAutoScroll();
+            }
+
+            function prevPhoto() {
+                if (photos.length === 0) return;
+                currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+                updateGallery();
+                resetAutoScroll();
+            }
+
+            function startAutoScroll() {
+                if (photos.length <= 1) return;
+                autoScrollInterval = setInterval(nextPhoto, 5000); // Change photo every 5 seconds
+            }
+
+            function resetAutoScroll() {
+                if (autoScrollInterval) {
+                    clearInterval(autoScrollInterval);
+                }
+                startAutoScroll();
+            }
+
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', prevPhoto);
+                nextBtn.addEventListener('click', nextPhoto);
+            }
+
+            // Load gallery on page load
+            loadGalleryImages();
         })();
     </script>
 </body>
