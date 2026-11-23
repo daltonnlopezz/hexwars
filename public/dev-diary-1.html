@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WARFORGE Dev Diary #1: Building the Board</title>
+    <meta name="description" content="The first WARFORGE dev diary: new terrain, every faction's buildings, a new title screen, splitting armies, music, and how every update is tested.">
+    <meta property="og:title" content="WARFORGE Dev Diary #1: Building the Board">
+    <meta property="og:description" content="New terrain, every faction's buildings, a new title screen and how every update is tested.">
+    <meta property="og:image" content="https://hexwars-battle-calculator.onrender.com/static/images/dev-diary/1/01-title-battle.jpg">
+    <meta property="og:type" content="article">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+.diary{max-width:820px;margin:28px auto 60px;padding:32px clamp(16px,4vw,44px);background:linear-gradient(135deg,#1a1a1a 0%,#232323 100%);border:2px solid #ffd700;border-radius:14px;color:#ddd;line-height:1.7;font-size:17px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.diary h1{color:#ffd700;font-size:clamp(28px,5vw,40px);margin:4px 0 18px;line-height:1.2}
+.diary h2{color:#ffd700;font-size:24px;margin:36px 0 10px;padding-bottom:6px;border-bottom:1px solid #3a3a3a}
+.diary-kicker{color:#aaa;text-transform:uppercase;letter-spacing:.08em;font-size:13px;margin:0}
+.diary p{margin:0 0 14px}
+.diary ul{margin:0 0 16px;padding-left:22px}
+.diary li{margin-bottom:6px}
+.diary strong{color:#fff}
+.diary figure{margin:18px 0 22px}
+.diary figure img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid #333}
+.diary figcaption{color:#999;font-size:14px;margin-top:6px;text-align:center}
+.diary a{color:#ffd700}
+.diary-back{margin-top:34px}
+.diary-card-link{display:block;color:inherit;text-decoration:none}
+.diary-card-link img{width:100%;border-radius:8px;margin-bottom:10px;display:block}
+</style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="homepage.html" aria-label="HEX Wars Home">
+                <img src="static/images/logo.jpg" alt="HEX Wars Logo">
+                <span class="brand-name">HEX Wars</span>
+            </a>
+            <nav class="topnav-center">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-trigger" href="lore.html">Lore ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="lore.html">All Lore</a>
+                        <a href="factions.html">Factions</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-trigger" href="tools.html">Game Tools ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="factions.html">Factions</a>
+                        <a href="index.html">Battle Calculator</a>
+                        <a href="resources.html">Resource Calculator</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="nav-right">
+                <a class="nav-link" href="shop.html">🛒 Shop</a>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-trigger" href="about.html">About ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="about.html">About HEX Wars</a>
+                        <a href="updates.html">Updates</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button id="accountBtn" class="account-btn dropdown-trigger">👤 <span id="accountLabel">Account</span> ▾</button>
+                    <div id="accountMenu" class="account-menu dropdown-menu" aria-hidden="true">
+                        <a href="login.html">Login</a>
+                        <a href="register.html">Sign Up</a>
+                        <a href="#">Support</a>
+                        <a href="#">Account Settings</a>
+                        <a id="accountAction" href="character-selection.html" style="display:none;">Account Home</a>
+                        <button id="logoutBtn" style="display:none;">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<article class="diary">
+  <p class="diary-kicker">Dev Diary #1 &middot; November 2026</p>
+  <h1>Building the Board</h1>
+  <p>Welcome to the first WARFORGE dev diary. From here on there will be one of these with every update, covering what changed, why, and what's coming next. Before getting into this update, a little context for anyone new.</p>
+
+  <h2>What WARFORGE is</h2>
+  <p>WARFORGE: Realms at War started as a physical board game. It is a hex-based strategy game for up to six players, each leading one faction: the Vanguard, the Empire, the Ironborne, the Raiders, the HORDE and the Damned. You claim land, build, trade, make and break alliances, and go to war. The digital version is built on the same rules as the tabletop game, so everything you see here started on a table with cards and tiles.</p>
+
+  <h2>The title screen</h2>
+  <p>The game now opens on the aftermath of a battle. Fallen soldiers, scattered weapons, smoke and fires, with the WARFORGE sword across the top.</p>
+  <figure><img src="static/images/dev-diary/1/01-title-battle.jpg" alt="The WARFORGE title screen: the aftermath of a battle" loading="lazy"><figcaption>The new title screen</figcaption></figure>
+
+  <h2>Hills, mountains and roads</h2>
+  <p>The terrain got a full pass.</p>
+  <ul>
+    <li><strong>Mountains</strong> now have proper ridges, snow on the peaks and foothills at the base.</li>
+    <li><strong>Hills</strong> are rounded and have cliff edges.</li>
+    <li><strong>Roads</strong> follow the edges between tiles and look like worn dirt and stone paths leading up to your castle.</li>
+  </ul>
+  <figure><img src="static/images/dev-diary/1/03-roads.jpg" alt="A Vanguard castle with worn roads leading to it" loading="lazy"><figcaption>Roads leading up to a castle</figcaption></figure>
+
+  <h2>Every faction has its own buildings</h2>
+  <p>Each of the six factions now has its own version of every building: castle, outpost, mine, harbor, fishery and claim marker. 42 pieces in total, each in the faction's colours and style, so you can tell who holds what without hovering over anything.</p>
+  <p>The HORDE also gets the <strong>Breeding Den</strong>, a building only they can construct. Other factions can only raze it.</p>
+  <p>When you capture a building, it changes to show your faction's banner, so a captured outpost deep in enemy land is easy to spot.</p>
+  <figure><img src="static/images/dev-diary/1/04-faction-buildings.jpg" alt="Six faction castles side by side on the board" loading="lazy"><figcaption>All six factions' castles</figcaption></figure>
+
+  <h2>Splitting armies</h2>
+  <p>Splitting an army used to take too many clicks. The new panel lets you pull units out by type with sliders, or in one click take all land units, all ships, everything, or only the units that can still move this turn.</p>
+  <figure><img src="static/images/dev-diary/1/05-split-army.jpg" alt="The split army panel with sliders for each unit type" loading="lazy"><figcaption>The new split army panel</figcaption></figure>
+
+  <h2>Music and an optional gore setting</h2>
+  <p>Music is in and the game is no longer silent. There's also an optional gore setting for battles, for players who want them messier.</p>
+
+  <h2>How we test every update</h2>
+  <p>A bit of behind the scenes. Before any update is installed, the game plays 72 complete games between computer players, with every faction. Every game has to finish, every move has to be legal, and the game has to be able to replay each one exactly from its save. If any of those fail, the update doesn't go in. This update passed with over 111,000 moves played and no rule errors.</p>
+
+  <h2>About the art you're seeing</h2>
+  <p>Right now the game uses free 3D asset packs from KayKit, Quaternius and Kenney, credited in the game. During prototyping, some reference images, including early unit cards, faction portraits and some interface icons, were made with AI to work out the look. Those are placeholders only. Every one of them will be replaced by work from real artists before release, and the final art, models and music will all be made by people.</p>
+
+  <h2>We're looking for artists</h2>
+  <p>We're commissioning artists now and will keep doing so as new factions are added. If you'd like to work on WARFORGE, we're looking for:</p>
+  <ul>
+    <li>Concept artists (characters, creatures and factions)</li>
+    <li>3D character artists (modelling and sculpting)</li>
+    <li>Riggers and animators</li>
+    <li>3D environment and prop artists (buildings, terrain, props)</li>
+    <li>UI artists (icons, crests, menus)</li>
+    <li>Illustrators for key art and the store page</li>
+  </ul>
+  <p>Send a DM with your portfolio if you're interested.</p>
+
+  <h2>What's next</h2>
+  <p>The next update is about the computer players and the war room:</p>
+  <ul>
+    <li><strong>Computer players that lay siege.</strong> They'll plan attacks on castles and bring siege engines instead of throwing armies at walls.</li>
+    <li><strong>A war room that comes alive.</strong> Commanders and advisers stand around the table and move while you play, the board gets birds and small signs of life, and the seasons change as the months go by.</li>
+    <li><strong>Smoother zoom.</strong> The camera no longer jumps when you zoom after panning.</li>
+  </ul>
+  <p>If you've read this far, thank you. Questions, ideas and feedback are all welcome on Discord.</p>
+  <p class="diary-back"><a href="updates.html">&larr; All updates</a></p>
+</article>
+
+    <script>
+        (function(){
+            const accountBtn = document.getElementById('accountBtn');
+            const accountMenu = document.getElementById('accountMenu');
+            const accountLabel = document.getElementById('accountLabel');
+            const accountAction = document.getElementById('accountAction');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            function isLoggedIn() {
+                try { return !!JSON.parse(localStorage.getItem('currentUser') || 'null'); } catch { return false; }
+            }
+
+            function syncAccountUI() {
+                if (isLoggedIn()) {
+                    accountLabel.textContent = 'Account';
+                    accountAction.style.display = 'block';
+                    logoutBtn.style.display = 'block';
+                } else {
+                    accountLabel.textContent = 'Account';
+                    accountAction.style.display = 'none';
+                    logoutBtn.style.display = 'none';
+                }
+            }
+
+            accountBtn.addEventListener('click', () => {
+                const open = accountMenu.classList.toggle('show');
+                accountMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+            });
+            document.addEventListener('click', (e) => {
+                if (!accountMenu.contains(e.target) && e.target !== accountBtn) {
+                    accountMenu.classList.remove('show');
+                    accountMenu.setAttribute('aria-hidden', 'true');
+                }
+            });
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('currentUser');
+                accountMenu.classList.remove('show');
+                syncAccountUI();
+                window.location.href = 'homepage.html';
+            });
+            syncAccountUI();
+        })();
+    </script>
+</body>
+</html>
