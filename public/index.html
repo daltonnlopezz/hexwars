@@ -34,7 +34,7 @@
                 </div>
             </nav>
             <div class="nav-right">
-                <a class="nav-link" href="shop.html">🛒 Shop</a>
+                <a class="nav-link" href="shop.html">Shop</a>
                 <div class="dropdown">
                     <a class="nav-link dropdown-trigger" href="about.html">About ▾</a>
                     <div class="dropdown-menu">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <button id="accountBtn" class="account-btn dropdown-trigger">👤 <span id="accountLabel">Account</span> ▾</button>
+                    <button id="accountBtn" class="account-btn dropdown-trigger"><span id="accountLabel">Account</span> ▾</button>
                     <div id="accountMenu" class="account-menu dropdown-menu" aria-hidden="true">
                         <a href="login.html">Login</a>
                         <a href="register.html">Sign Up</a>
@@ -65,7 +65,6 @@
         <!-- Attacker Section -->
         <div class="army-card attacker-card">
             <div class="card-header attacker-header">
-                <span class="header-icon">💥</span>
                 <h2>Attacker</h2>
             </div>
             <div class="card-content">
@@ -103,7 +102,6 @@
         <!-- Defender Section -->
         <div class="army-card defender-card">
             <div class="card-header defender-header">
-                <span class="header-icon">🛡️</span>
                 <h2>Defender</h2>
             </div>
             <div class="card-content">
@@ -141,17 +139,15 @@
         <!-- Supporters Section -->
         <div class="supporters-card">
             <div class="card-header supporters-header">
-                <span class="header-icon">🟡</span>
                 <h2>Supporting Armies</h2>
                 <button onclick="addSupporter()" class="add-supporter-btn">
-                    <span class="btn-icon">➕</span>
                     Add Supporter
                 </button>
             </div>
             <div class="card-content">
                 <div id="supportersContainer" class="supporters-container">
                     <div class="no-supporters">
-                        <span class="info-icon">ℹ️</span>
+                        <span class="info-icon">ℹ</span>
                         <p>No supporting armies added yet. Click "Add Supporter" to include additional forces.</p>
                     </div>
                 </div>
@@ -161,7 +157,6 @@
         <!-- Battle Conditions Section -->
         <div class="conditions-card">
             <div class="card-header conditions-header">
-                <span class="header-icon">⚔️</span>
                 <h2>Battle Conditions</h2>
             </div>
             <div class="card-content">
@@ -228,15 +223,12 @@
         <!-- Action Buttons -->
         <div class="action-buttons">
             <button onclick="clearForm()" class="clear-btn">
-                <span class="btn-icon">🗑️</span>
                 Clear Form
             </button>
             <button onclick="loadPreset()" class="preset-btn">
-                <span class="btn-icon">📋</span>
                 Quick Preset
             </button>
             <button id="calculateBtn" onclick="submitBattle()" class="calculate-btn">
-                <span class="btn-icon">⚔️</span>
                 Calculate Battle
             </button>
         </div>
@@ -403,7 +395,6 @@
                 <div class="supporter-header">
                     <h4>Supporting Army</h4>
                     <button onclick="removeSupporter(${supporterId})" class="remove-supporter-btn">
-                        <span class="btn-icon">🗑️</span>
                     </button>
                 </div>
                 <div class="supporter-content">
@@ -473,7 +464,7 @@
                 if (remainingSupporters.length === 0) {
                     container.innerHTML = `
                         <div class="no-supporters">
-                            <span class="info-icon">ℹ️</span>
+                            <span class="info-icon">ℹ</span>
                             <p>No supporting armies added yet. Click "Add Supporter" to include additional forces.</p>
                         </div>
                     `;
@@ -544,7 +535,7 @@
             const container = document.getElementById("supportersContainer");
             container.innerHTML = `
                 <div class="no-supporters">
-                    <span class="info-icon">ℹ️</span>
+                    <span class="info-icon">ℹ</span>
                     <p>No supporting armies added yet. Click "Add Supporter" to include additional forces.</p>
                 </div>
             `;
@@ -583,7 +574,7 @@
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
             notification.innerHTML = `
-                <span class="notification-icon">${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'}</span>
+                <span class="notification-icon">${type === 'success' ? '' : type === 'error' ? '' : 'ℹ'}</span>
                 <span class="notification-text">${message}</span>
             `;
             
@@ -651,7 +642,7 @@
                 console.log("[DEBUG] Fetch response:", response);
 
                 if (!response.ok) {
-                    resultsDiv.innerHTML = '<div class="results-card" style="text-align: center; color: #ff4444; padding: 20px;">❌ Error submitting battle. Please try again.</div>';
+                    resultsDiv.innerHTML = '<div class="results-card" style="text-align: center; color: #ff4444; padding: 20px;">Error submitting battle. Please try again.</div>';
                     return;
                 }
 
@@ -662,7 +653,7 @@
                     <div class="results-wrapper">
                         <div class="results-card">
                             <div class="battle-results">
-                                <h2>⚔️ BATTLE RESULTS ⚔️</h2>
+                                <h2>BATTLE RESULTS </h2>
                                 <h3 style="color: ${data.battle_results.winner === 'Attackers' ? '#ff4444' : (data.battle_results.winner === 'Defenders' ? '#44ff44' : '#888888')}">
                                     ${data.battle_results.winner === 'Tie' ? "It's a Tie!" : `${data.battle_results.winner} Victory!`}
                                 </h3>
@@ -687,7 +678,7 @@
                             </div>
 
                             <div class="attackers-section">
-                                <h3>💥 ATTACKERS 💥</h3>
+                                <h3>ATTACKERS </h3>
                                 <div class="stats-grid">
                                     <div class="stat-item">
                                         <div class="stat-label">Battle Power</div>
@@ -734,7 +725,7 @@
                             </div>
 
                             <div class="defenders-section">
-                                <h3>🛡️ DEFENDERS 🛡️</h3>
+                                <h3>DEFENDERS </h3>
                                 <div class="stats-grid">
                                     <div class="stat-item">
                                         <div class="stat-label">Battle Power</div>
@@ -782,7 +773,7 @@
 
                             ${data.special_results ? `
                                 <div class="special-results">
-                                    <h3>✨ ADDITIONAL RESULTS ✨</h3>
+                                    <h3>ADDITIONAL RESULTS </h3>
                                     ${data.special_results.lost_souls ? `
                                         <div class="stat-item" style="max-width: 200px; margin: 0 auto;">
                                             <div class="stat-label">Lost Souls Collected</div>
@@ -812,7 +803,7 @@
                 `;
             } catch (error) {
                 console.error("[DEBUG] Error:", error);
-                resultsDiv.innerHTML = '<div class="results-card" style="text-align: center; color: #ff4444; padding: 20px;">❌ Network error. Please check your connection and try again.</div>';
+                resultsDiv.innerHTML = '<div class="results-card" style="text-align: center; color: #ff4444; padding: 20px;">Network error. Please check your connection and try again.</div>';
             }
         }
 

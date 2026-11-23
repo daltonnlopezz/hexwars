@@ -18,19 +18,15 @@
     <!-- Navigation Card -->
     <div class="nav-card">
         <a href="index.html" class="nav-btn battle-btn">
-            <span class="btn-icon">⚔️</span>
             <span class="btn-text">Battle Calculator</span>
         </a>
         <a href="factions.html" class="nav-btn factions-btn">
-            <span class="btn-icon">📋</span>
             <span class="btn-text">Faction Details</span>
         </a>
         <a href="login.html" class="nav-btn login-btn">
-            <span class="btn-icon">👤</span>
             <span class="btn-text">Create Character</span>
         </a>
         <a href="resources.html" class="nav-btn resources-btn">
-            <span class="btn-icon">💰</span>
             <span class="btn-text">Resource Calculator</span>
         </a>
     </div>
@@ -38,7 +34,6 @@
     <div class="calculator-container">
         <div class="army-card">
             <div class="card-header character-header">
-                <span class="header-icon">👤</span>
                 <h2>Character Management</h2>
             </div>
             <div class="card-content">
@@ -75,7 +70,6 @@
                             </div>
                             <div class="form-actions">
                                 <button class="nav-btn character-btn" onclick="createCharacter()">
-                                    <span class="btn-icon">✨</span>
                                     <span class="btn-text">Create Character</span>
                                 </button>
                             </div>
@@ -140,11 +134,9 @@
                         <div class="character-created">Created: ${character.created}</div>
                         <div class="character-actions">
                             <button class="nav-btn character-btn" onclick="editCharacter(${character.id})">
-                                <span class="btn-icon">✏️</span>
                                 <span class="btn-text">Edit</span>
                             </button>
                             <button class="nav-btn back-btn" onclick="deleteCharacter(${character.id})">
-                                <span class="btn-icon">🗑️</span>
                                 <span class="btn-text">Delete</span>
                             </button>
                         </div>

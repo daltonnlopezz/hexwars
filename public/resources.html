@@ -34,7 +34,7 @@
                 </div>
             </nav>
             <div class="nav-right">
-                <a class="nav-link" href="shop.html">🛒 Shop</a>
+                <a class="nav-link" href="shop.html">Shop</a>
                 <div class="dropdown">
                     <a class="nav-link dropdown-trigger" href="about.html">About ▾</a>
                     <div class="dropdown-menu">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <button id="accountBtn" class="account-btn dropdown-trigger">👤 <span id="accountLabel">Account</span> ▾</button>
+                    <button id="accountBtn" class="account-btn dropdown-trigger"><span id="accountLabel">Account</span> ▾</button>
                     <div id="accountMenu" class="account-menu dropdown-menu" aria-hidden="true">
                         <a href="login.html">Login</a>
                         <a href="register.html">Sign Up</a>
@@ -62,15 +62,12 @@
     <!-- Game State Controls -->
     <div class="game-state-controls">
         <button class="game-state-btn save-btn" onclick="saveGameState(true)" title="Save current game state">
-            <span class="btn-icon">💾</span>
             <span class="btn-text">Save Game</span>
         </button>
         <button class="game-state-btn load-btn" onclick="loadGameState(true)" title="Load saved game state">
-            <span class="btn-icon">📂</span>
             <span class="btn-text">Load Game</span>
         </button>
         <button class="game-state-btn clear-btn" onclick="clearSavedGameState()" title="Clear saved game data">
-            <span class="btn-icon">🗑️</span>
             <span class="btn-text">Clear Save</span>
         </button>
     </div>
@@ -79,7 +76,6 @@
     <div class="round-faction-section">
         <div class="round-counter-card">
             <div class="round-counter-header">
-                <span class="round-counter-icon">🎯</span>
                 <h3>Current Round</h3>
             </div>
             <div class="round-counter-controls">
@@ -98,7 +94,6 @@
         
         <div class="faction-selection-card">
             <div class="faction-selection-header">
-                <span class="faction-selection-icon">⚔️</span>
                 <h3>Faction Selection</h3>
             </div>
             <div class="faction-selection-controls">
@@ -118,7 +113,6 @@
         
         <div class="trade-networks-card" id="tradeNetworksCard" style="display: none;">
             <div class="trade-networks-header">
-                <span class="trade-networks-icon">🌐</span>
                 <h3>Complete Trade Networks</h3>
             </div>
             <div class="trade-networks-controls">
@@ -140,29 +134,24 @@
     <div class="resource-pool-section">
         <div class="army-card resources-card">
             <div class="card-header resources-header">
-                <span class="header-icon">💎</span>
                 <h2>Resource Pool</h2>
             </div>
             <div class="card-content">
                 <div class="resource-pool-grid">
                     <div class="resource-pool-item">
-                        <span class="resource-icon">🍖</span>
-                        <label for="poolFood">Food:</label>
+<label for="poolFood">Food:</label>
                         <input type="number" id="poolFood" min="0" value="0" placeholder="0">
                     </div>
                     <div class="resource-pool-item">
-                        <span class="resource-icon">💰</span>
-                        <label for="poolGold">Gold:</label>
+<label for="poolGold">Gold:</label>
                         <input type="number" id="poolGold" min="0" value="0" placeholder="0">
                     </div>
                     <div class="resource-pool-item">
-                        <span class="resource-icon">⚒️</span>
-                        <label for="poolIron">Iron:</label>
+<label for="poolIron">Iron:</label>
                         <input type="number" id="poolIron" min="0" value="0" placeholder="0">
                     </div>
                     <div class="resource-pool-item">
-                        <span class="resource-icon">📦</span>
-                        <label for="poolOther">Other:</label>
+<label for="poolOther">Other:</label>
                         <input type="number" id="poolOther" min="0" value="0" placeholder="0">
                     </div>
                 </div>
@@ -175,14 +164,12 @@
         <!-- KINGDOM MANAGEMENT -->
         <div class="army-card kingdom-card">
             <div class="card-header kingdom-header">
-                <span class="header-icon">👑</span>
                 <h2>Kingdom Management</h2>
             </div>
   
             <!-- Terrain Section -->
             <div class="army-card terrain-card">
                 <div class="card-header terrain-header">
-                    <span class="header-icon">🌿</span>
                     <h2>Terrain Claimed</h2>
                 </div>
                 <div class="card-content">
@@ -209,7 +196,6 @@
             <!-- Building Section -->
             <div class="army-card building-card">
                 <div class="card-header building-header">
-                    <span class="header-icon">🏗️</span>
                     <h2>Building Holdings</h2>
                 </div>
                 <div class="card-content">
@@ -237,15 +223,12 @@
             <!-- Action Buttons -->
             <div class="action-buttons">
                 <button class="clear-btn" onclick="clearAllIncomeInputs()">
-                    <span class="btn-icon">🗑️</span>
                     Clear All Income
                 </button>
                 <button class="calculate-btn calculate-income-btn" onclick="calculateResourceIncome()">
-                    <span class="btn-icon">💰</span>
                     Calculate Income
                 </button>
                 <button class="calculate-btn income-btn" onclick="sendResourceIncomeToPool()">
-                    <span class="btn-icon">📥</span>
                     Send Income to Pool
                 </button>
             </div>
@@ -257,14 +240,12 @@
         <!-- UNIT MANAGEMENT -->
         <div class="army-card unit-card">
             <div class="card-header unit-header">
-                <span class="header-icon">🛡️</span>
                 <h2>Unit Management</h2>
             </div>
 
             <!-- Unit Recruitment Section -->
             <div class="army-card unit-recruitment-card">
                 <div class="card-header unit-recruitment-header">
-                    <span class="header-icon">⚔️</span>
                     <h2>Unit Recruitment</h2>
                 </div>
                 <div class="card-content">
@@ -278,7 +259,6 @@
             <!-- Construct Building Section -->
             <div class="army-card building-construction-card">
                 <div class="card-header building-construction-header">
-                    <span class="header-icon">🏗️</span>
                     <h2>Construct Building</h2>
                 </div>
                 <div class="card-content">
@@ -291,15 +271,12 @@
             <!-- Action Buttons -->
             <div class="action-buttons">
                 <button class="clear-btn" onclick="clearAllExpensesInputs()">
-                    <span class="btn-icon">🗑️</span>
                     Clear All Expenses
                 </button>
                 <button class="calculate-btn calculate-expense-btn" onclick="calculateUnitExpenses()">
-                    <span class="btn-icon">💰</span>
                     Calculate Expenses
                 </button>
                 <button class="calculate-btn expense-btn" onclick="takeUnitExpensesFromPool()">
-                    <span class="btn-icon">📤</span>
                     Take Expenses from Pool
                 </button>
             </div>
@@ -473,19 +450,19 @@
                             <span class="unit-name">${unit.name}</span>
                             <div class="unit-costs">
                                 <span class="cost-item">
-                                    <span class="cost-icon">🍖</span>
+                                    <span class="cost-icon">Food</span>
                                     <span class="cost-value">${unit.food}</span>
                                 </span>
                                 <span class="cost-item">
-                                    <span class="cost-icon">💰</span>
+                                    <span class="cost-icon">Gold</span>
                                     <span class="cost-value">${unit.gold}</span>
                                 </span>
                                 <span class="cost-item">
-                                    <span class="cost-icon">⚒️</span>
+                                    <span class="cost-icon">Iron</span>
                                     <span class="cost-value">${unit.iron}</span>
                                 </span>
                                 <span class="cost-item">
-                                    <span class="cost-icon">📦</span>
+                                    <span class="cost-icon">Other</span>
                                     <span class="cost-value">${unit.other}</span>
                                 </span>
                             </div>
@@ -513,19 +490,19 @@
                             <span class="building-name">${building.name}</span>
                             <div class="building-costs">
                                 <span class="cost-item">
-                                    <span class="cost-icon">🍖</span>
+                                    <span class="cost-icon">Food</span>
                                     <span class="cost-value">${building.food}</span>
                                 </span>
                                 <span class="cost-item">
-                                    <span class="cost-icon">💰</span>
+                                    <span class="cost-icon">Gold</span>
                                     <span class="cost-value">${building.gold}</span>
                                 </span>
                                 <span class="cost-item">
-                                    <span class="cost-icon">⚒️</span>
+                                    <span class="cost-icon">Iron</span>
                                     <span class="cost-value">${building.iron}</span>
                                 </span>
                                 <span class="cost-item">
-                                    <span class="cost-icon">📦</span>
+                                    <span class="cost-icon">Other</span>
                                     <span class="cost-value">${building.other}</span>
                                 </span>
                             </div>
@@ -900,15 +877,15 @@
             // Show confirmation popup
             const confirmMessage = `Add income to resource pool?\n\n` +
                 `Current Pool:\n` +
-                `🍖 Food: ${poolFood} → ${newPoolFood}\n` +
-                `💰 Gold: ${poolGold} → ${newPoolGold}\n` +
-                `⚒️ Iron: ${poolIron} → ${newPoolIron}\n` +
-                `📦 Other: ${poolOther} → ${newPoolOther}\n\n` +
+                `Food: ${poolFood} → ${newPoolFood}\n` +
+                `Gold: ${poolGold} → ${newPoolGold}\n` +
+                `Iron: ${poolIron} → ${newPoolIron}\n` +
+                `Other: ${poolOther} → ${newPoolOther}\n\n` +
                 `Income to add:\n` +
-                `🍖 Food: +${calculatedIncome.food}\n` +
-                `💰 Gold: +${calculatedIncome.gold}\n` +
-                `⚒️ Iron: +${calculatedIncome.iron}\n` +
-                `📦 Other: +${calculatedIncome.other}`;
+                `Food: +${calculatedIncome.food}\n` +
+                `Gold: +${calculatedIncome.gold}\n` +
+                `Iron: +${calculatedIncome.iron}\n` +
+                `Other: +${calculatedIncome.other}`;
             
             showConfirmation(confirmMessage, 
                 () => {
@@ -978,14 +955,14 @@
                                 <div class="terrain-item">
                                     <strong>Plains</strong>
                                     <div class="terrain-costs">
-                                        <span>🍖 ${terrainData.plains * 1}</span>
+                                        <span>${terrainData.plains * 1}</span>
                                     </div>
                                 </div>
                                 <div class="terrain-item">
                                     <strong>Hills</strong>
                                     <div class="terrain-costs">
-                                        <span>💰 ${terrainData.hills * (factionSelection === "Ironborne" ? 4 : 3)}</span>
-                                        <span>⚒️ ${terrainData.hills * (factionSelection === "Ironborne" ? 4 : 3)}</span>
+                                        <span>${terrainData.hills * (factionSelection === "Ironborne" ? 4 : 3)}</span>
+                                        <span>${terrainData.hills * (factionSelection === "Ironborne" ? 4 : 3)}</span>
                                     </div>
                                 </div>
                             </div>
@@ -996,22 +973,22 @@
                                 <div class="building-item">
                                     <strong>Castles</strong>
                                     <div class="building-costs">
-                                        <span>🍖 ${buildingData.castles * 5}</span>
-                                        <span>💰 ${buildingData.castles * (factionSelection === "Empire" ? 5 : 4)}</span>
-                                        <span>⚒️ ${buildingData.castles * (factionSelection === "Ironborne" ? 5 : 4)}</span>
+                                        <span>${buildingData.castles * 5}</span>
+                                        <span>${buildingData.castles * (factionSelection === "Empire" ? 5 : 4)}</span>
+                                        <span>${buildingData.castles * (factionSelection === "Ironborne" ? 5 : 4)}</span>
                                     </div>
                                 </div>
                                 <div class="building-item">
                                     <strong>Mines</strong>
                                     <div class="building-costs">
-                                        <span>💰 ${buildingData.mines > 0 ? terrainData.hills * 2 : 0}</span>
-                                        <span>⚒️ ${buildingData.mines > 0 ? terrainData.hills * 2 : 0}</span>
+                                        <span>${buildingData.mines > 0 ? terrainData.hills * 2 : 0}</span>
+                                        <span>${buildingData.mines > 0 ? terrainData.hills * 2 : 0}</span>
                                     </div>
                                 </div>
                                 <div class="building-item">
                                     <strong>Fisheries</strong>
                                     <div class="building-costs">
-                                        <span>🍖 ${buildingData.fisheries > 0 ? terrainData.sea * 1 : 0}</span>
+                                        <span>${buildingData.fisheries > 0 ? terrainData.sea * 1 : 0}</span>
                                     </div>
                                 </div>
                             </div>
@@ -1023,8 +1000,8 @@
                                 <div class="trade-networks-item">
                                     <strong>Complete Trade Networks (${tradeNetworks})</strong>
                                     <div class="trade-networks-costs">
-                                        <span>💰 ${tradeNetworks * 2}</span>
-                                        <span>⚒️ ${tradeNetworks * 2}</span>
+                                        <span>${tradeNetworks * 2}</span>
+                                        <span>${tradeNetworks * 2}</span>
                                     </div>
                                 </div>
                             </div>
@@ -1033,10 +1010,10 @@
                         <div class="kingdom-section total-section">
                             <h5>Total Kingdom Income</h5>
                             <div class="total-breakdown">
-                                <div class="total-item">🍖 Food: ${totalIncome.food}</div>
-                                <div class="total-item">💰 Gold: ${totalIncome.gold}</div>
-                                <div class="total-item">⚒️ Iron: ${totalIncome.iron}</div>
-                                <div class="total-item">📦 Other: ${totalIncome.other}</div>
+                                <div class="total-item">Food: ${totalIncome.food}</div>
+                                <div class="total-item">Gold: ${totalIncome.gold}</div>
+                                <div class="total-item">Iron: ${totalIncome.iron}</div>
+                                <div class="total-item">Other: ${totalIncome.other}</div>
                             </div>
                         </div>
                     </div>
@@ -1217,29 +1194,29 @@
             // Build unit breakdown for confirmation
             let unitDetails = '';
             unitBreakdown.forEach(unit => {
-                unitDetails += `${unit.name} (${unit.quantity}): 🍖${unit.food} 💰${unit.gold} ⚒️${unit.iron} 📦${unit.other}\n`;
+                unitDetails += `${unit.name} (${unit.quantity}): Food ${unit.food} Gold ${unit.gold} Iron ${unit.iron} Other ${unit.other}\n`;
             });
             
             // Build building breakdown for confirmation
             let buildingDetails = '';
             buildingBreakdown.forEach(building => {
-                buildingDetails += `${building.name} (${building.quantity}): 🍖${building.food} 💰${building.gold} ⚒️${building.iron} 📦${building.other}\n`;
+                buildingDetails += `${building.name} (${building.quantity}): Food ${building.food} Gold ${building.gold} Iron ${building.iron} Other ${building.other}\n`;
             });
             
             // Show confirmation popup
             const confirmMessage = `Deduct unit and building expenses from resource pool?\n\n` +
                 `Current Pool:\n` +
-                `🍖 Food: ${poolFood} → ${newPoolFood}\n` +
-                `💰 Gold: ${poolGold} → ${newPoolGold}\n` +
-                `⚒️ Iron: ${poolIron} → ${newPoolIron}\n` +
-                `📦 Other: ${poolOther} → ${newPoolOther}\n\n` +
+                `Food: ${poolFood} → ${newPoolFood}\n` +
+                `Gold: ${poolGold} → ${newPoolGold}\n` +
+                `Iron: ${poolIron} → ${newPoolIron}\n` +
+                `Other: ${poolOther} → ${newPoolOther}\n\n` +
                 `Units to recruit:\n${unitDetails}` +
                 `Buildings to construct:\n${buildingDetails}\n` +
                 `Total expenses:\n` +
-                `🍖 Food: -${totalExpenses.food}\n` +
-                `💰 Gold: -${totalExpenses.gold}\n` +
-                `⚒️ Iron: -${totalExpenses.iron}\n` +
-                `📦 Other: -${totalExpenses.other}`;
+                `Food: -${totalExpenses.food}\n` +
+                `Gold: -${totalExpenses.gold}\n` +
+                `Iron: -${totalExpenses.iron}\n` +
+                `Other: -${totalExpenses.other}`;
             
             showConfirmation(confirmMessage, 
                 () => {
@@ -1304,10 +1281,10 @@
                     <div class="expense-item">
                         <strong>${unit.name} (${unit.quantity})</strong>
                         <div class="unit-costs">
-                            <span>🍖 ${unit.food}</span>
-                            <span>💰 ${unit.gold}</span>
-                            <span>⚒️ ${unit.iron}</span>
-                            <span>📦 ${unit.other}</span>
+                            <span>${unit.food}</span>
+                            <span>${unit.gold}</span>
+                            <span>${unit.iron}</span>
+                            <span>${unit.other}</span>
                         </div>
                     </div>
                 `;
@@ -1324,10 +1301,10 @@
                     <div class="expense-item">
                         <strong>${building.name} (${building.quantity})</strong>
                         <div class="building-costs">
-                            <span>🍖 ${building.food}</span>
-                            <span>💰 ${building.gold}</span>
-                            <span>⚒️ ${building.iron}</span>
-                            <span>📦 ${building.other}</span>
+                            <span>${building.food}</span>
+                            <span>${building.gold}</span>
+                            <span>${building.iron}</span>
+                            <span>${building.other}</span>
                         </div>
                     </div>
                 `;
@@ -1337,10 +1314,10 @@
                         </div>
                         <div class="expense-section total-section">
                             <h5>Total Expenses</h5>
-                            <div class="expense-item total">🍖 Food: ${totalExpenses.food}</div>
-                            <div class="expense-item total">💰 Gold: ${totalExpenses.gold}</div>
-                            <div class="expense-item total">⚒️ Iron: ${totalExpenses.iron}</div>
-                            <div class="expense-item total">📦 Other: ${totalExpenses.other}</div>
+                            <div class="expense-item total">Food: ${totalExpenses.food}</div>
+                            <div class="expense-item total">Gold: ${totalExpenses.gold}</div>
+                            <div class="expense-item total">Iron: ${totalExpenses.iron}</div>
+                            <div class="expense-item total">Other: ${totalExpenses.other}</div>
                         </div>
                     </div>
                 </div>
