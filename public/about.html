@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About HEX Wars</title>
+    <title>About WARFORGE</title>
     <link rel="stylesheet" href="styles.css">
+    <style>.about-body{line-height:1.7;color:#ddd;font-size:16px}.about-body h3{color:#ffd700;margin:24px 0 6px}.about-body a{color:#ffd700}.about-small{color:#888;font-size:14px;margin-top:24px}</style>
 </head>
 <body>
     <header class="topbar">
         <div class="topbar-inner">
-            <a class="brand" href="homepage.html" aria-label="HEX Wars Home">
-                <img src="static/images/logo.jpg" alt="HEX Wars Logo">
-                <span class="brand-name">HEX Wars</span>
+            <a class="brand" href="./" aria-label="WARFORGE home">
+                <span class="brand-name">WARFORGE</span>
             </a>
             <nav class="topnav-center">
                 <div class="dropdown">
@@ -25,29 +25,19 @@
                     <a class="nav-link dropdown-trigger" href="tools.html">Game Tools ▾</a>
                     <div class="dropdown-menu">
                         <a href="factions.html">Factions</a>
-                        <a href="index.html">Battle Calculator</a>
+                        <a href="battle-calculator.html">Battle Calculator</a>
                         <a href="resources.html">Resource Calculator</a>
                     </div>
                 </div>
             </nav>
             <div class="nav-right">
+                <a class="nav-link" href="updates.html">Dev Diary</a>
                 <a class="nav-link" href="shop.html">Shop</a>
                 <div class="dropdown">
                     <a class="nav-link dropdown-trigger" href="about.html">About ▾</a>
                     <div class="dropdown-menu">
-                        <a href="about.html">About HEX Wars</a>
+                        <a href="about.html">About WARFORGE</a>
                         <a href="updates.html">Updates</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button id="accountBtn" class="account-btn dropdown-trigger"><span id="accountLabel">Account</span> ▾</button>
-                    <div id="accountMenu" class="account-menu dropdown-menu" aria-hidden="true">
-                        <a href="login.html">Login</a>
-                        <a href="register.html">Sign Up</a>
-                        <a href="#">Support</a>
-                        <a href="#">Account Settings</a>
-                        <a id="accountAction" href="character-selection.html" style="display:none;">Account Home</a>
-                        <button id="logoutBtn" style="display:none;">Logout</button>
                     </div>
                 </div>
             </div>
@@ -56,11 +46,24 @@
 
     <div class="faction-card" style="border-color:#ffd700; margin-top:20px;">
         <div class="card-header resources-header">
-            <span class="header-icon">ℹ</span>
-            <h2>About HEX Wars</h2>
+            <h2>About WARFORGE</h2>
         </div>
-        <div class="card-content">
-            <p>HEX Wars is an original universe and suite of tools focused on tactical hex-grid warfare, deep faction identity, and evolving stories. HEX Wars aims to build a world and tools that invite players to explore, create, and share.</p>
+        <div class="card-content about-body">
+            <p><strong>WARFORGE: Realms at War</strong> is a hex-based strategy game for up to six players. Each player leads one faction, the Vanguard, the Empire, the Ironborne, the Raiders, the HORDE or the Damned, and fights for the land through conquest, trade, alliances and betrayal.</p>
+
+            <h3>From the table to the screen</h3>
+            <p>WARFORGE started as a physical board game: a hex grid drawn on graph paper, tiles modelled and 3D printed, and rules tested over many games on the table. The digital version is built on those same rules, so the game you play on screen is the game that was played on the table.</p>
+
+            <h3>The factions</h3>
+            <p>Every faction plays differently. Some win through reputation, trade and diplomacy; others, like the HORDE and the Damned, only through conquest. Learn more on the <a href="factions.html">Factions</a> page.</p>
+
+            <h3>Made by people</h3>
+            <p>The game's core rules were designed by hand for the tabletop game. The final art, models, music and sound are made by human artists, and we commission artists directly. If you're an artist interested in working on WARFORGE, send us a message on <a href="https://discord.gg/TF3F2Dxb8" target="_blank" rel="noopener">Discord</a> or <a href="https://www.instagram.com/heirsofthewolf/" target="_blank" rel="noopener">Instagram</a>.</p>
+
+            <h3>Follow development</h3>
+            <p>Every update gets a <a href="updates.html">dev diary</a>. Playtests and discussion happen on <a href="https://discord.gg/TF3F2Dxb8" target="_blank" rel="noopener">Discord</a>, and you can follow along on <a href="https://www.instagram.com/heirsofthewolf/" target="_blank" rel="noopener">Instagram</a> and <a href="https://x.com/HeirsoftheWolf" target="_blank" rel="noopener">X</a>.</p>
+
+            <p class="about-small">WARFORGE is developed by Heirs of the Wolf.</p>
         </div>
     </div>
 
@@ -77,6 +80,7 @@
             }
 
             function syncAccountUI() {
+                if (!accountLabel || !accountAction || !logoutBtn) return;
                 if (isLoggedIn()) {
                     accountLabel.textContent = 'Account';
                     accountAction.style.display = 'block';
@@ -90,10 +94,10 @@
 
             // Account dropdown now works with hover like other dropdowns
             // No need for click handlers since it uses CSS hover
-            logoutBtn.addEventListener('click', () => {
+            if (logoutBtn) logoutBtn.addEventListener('click', () => {
                 localStorage.removeItem('currentUser');
                 syncAccountUI();
-                window.location.href = 'homepage.html';
+                window.location.href = './';
             });
             syncAccountUI();
         })();

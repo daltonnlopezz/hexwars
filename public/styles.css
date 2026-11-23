@@ -4256,3 +4256,7 @@ button:focus, a:focus, select:focus, input:focus {
     color: #b8b8b8;
     margin-right: 4px;
 }
+
+/* Text-only brand */
+a.brand { text-decoration: none; }
+a.brand .brand-name { color: #ffd700; letter-spacing: 0.08em; font-weight: 700; }

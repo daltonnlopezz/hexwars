@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WARFORGE Battle Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="./" aria-label="WARFORGE home">
+                <span class="brand-name">WARFORGE</span>
+            </a>
+            <nav class="topnav-center">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-trigger" href="lore.html">Lore ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="lore.html">All Lore</a>
+                        <a href="factions.html">Factions</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-trigger" href="tools.html">Game Tools ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="factions.html">Factions</a>
+                        <a href="battle-calculator.html">Battle Calculator</a>
+                        <a href="resources.html">Resource Calculator</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="nav-right">
+                <a class="nav-link" href="updates.html">Dev Diary</a>
+                <a class="nav-link" href="shop.html">Shop</a>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-trigger" href="about.html">About ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="about.html">About WARFORGE</a>
+                        <a href="updates.html">Updates</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <h1>WARFORGE BATTLE CALCULATOR</h1>
+
+    <!-- Main Calculator Container -->
+    <div class="calculator-container">
+        
+        <!-- Attacker Section -->
+        <div class="army-card attacker-card">
+            <div class="card-header attacker-header">
+                <h2>Attacker</h2>
+            </div>
+            <div class="card-content">
+                <div class="faction-selector">
+                    <label for="attackerFaction">Faction:</label>
+                    <select id="attackerFaction" onchange="updateUnitLabels('attacker')">
+                        <option value="Empire">Empire</option>
+                        <option value="Raiders">Raiders</option>
+                        <option value="HORDE">HORDE</option>
+                        <option value="Ironborne">Ironborne</option>
+                        <option value="Vanguard">Vanguard</option>
+                        <option value="Damned">Damned</option>
+                    </select>
+                </div>
+
+                <div class="units-section">
+                    <h3>Army Composition</h3>
+                    <div id="attackerUnits" class="units-grid"></div>
+                </div>
+
+                <div class="leader-section">
+                    <h3>Leader</h3>
+                    <div class="leader-controls">
+                        <select id="attackerLeader" onchange="toggleLeaderCheckbox('attacker')">
+                            <option value="">None</option>
+                        </select>
+                        <div id="attackerLeaderCheckboxContainer" class="leader-checkbox">
+                            <label><input type="checkbox" id="attackerLeaderActive"> Leader Ability Active</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Defender Section -->
+        <div class="army-card defender-card">
+            <div class="card-header defender-header">
+                <h2>Defender</h2>
+            </div>
+            <div class="card-content">
+                <div class="faction-selector">
+                    <label for="defenderFaction">Faction:</label>
+                    <select id="defenderFaction" onchange="updateUnitLabels('defender')">
+                        <option value="Empire">Empire</option>
+                        <option value="Raiders">Raiders</option>
+                        <option value="HORDE">HORDE</option>
+                        <option value="Ironborne">Ironborne</option>
+                        <option value="Vanguard">Vanguard</option>
+                        <option value="Damned">Damned</option>
+                    </select>
+                </div>
+
+                <div class="units-section">
+                    <h3>Army Composition</h3>
+                    <div id="defenderUnits" class="units-grid"></div>
+                </div>
+
+                <div class="leader-section">
+                    <h3>Leader</h3>
+                    <div class="leader-controls">
+                        <select id="defenderLeader" onchange="toggleLeaderCheckbox('defender')">
+                            <option value="">None</option>
+                        </select>
+                        <div id="defenderLeaderCheckboxContainer" class="leader-checkbox">
+                            <label><input type="checkbox" id="defenderLeaderActive"> Leader Ability Active</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Supporters Section -->
+        <div class="supporters-card">
+            <div class="card-header supporters-header">
+                <h2>Supporting Armies</h2>
+                <button onclick="addSupporter()" class="add-supporter-btn">
+                    Add Supporter
+                </button>
+            </div>
+            <div class="card-content">
+                <div id="supportersContainer" class="supporters-container">
+                    <div class="no-supporters">
+                        <span class="info-icon">i</span>
+                        <p>No supporting armies added yet. Click "Add Supporter" to include additional forces.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Battle Conditions Section -->
+        <div class="conditions-card">
+            <div class="card-header conditions-header">
+                <h2>Battle Conditions</h2>
+            </div>
+            <div class="card-content">
+                <div class="conditions-grid">
+                    <div class="condition-group">
+                        <label>Attacking From:</label>
+                        <select id="attackingFrom">
+                            <option value="Plains">Plains</option>
+                            <option value="Plains Harvestor Adjacent">Plains Harvestor Adjacent</option>
+                            <option value="Forest">Forest</option>
+                            <option value="Forest Harvestor Adjacent">Forest Harvestor Adjacent</option>
+                            <option value="Hills">Hills</option>
+                            <option value="Hills Harvestor Adjacent">Hills Harvestor Adjacent</option>
+                            <option value="Sea">Sea</option>
+                        </select>
+                    </div>
+
+                    <div class="condition-group">
+                        <label>Battle Tile:</label>
+                        <select id="battleTile">
+                            <option value="Plains">Plains</option>
+                            <option value="Plains Harvestor Adjacent">Plains Harvestor Adjacent</option>
+                            <option value="Forest">Forest</option>
+                            <option value="Forest Harvestor Adjacent">Forest Harvestor Adjacent</option>
+                            <option value="Hills">Hills</option>
+                            <option value="Hills Harvestor Adjacent">Hills Harvestor Adjacent</option>
+                            <option value="Sea">Sea</option>
+                        </select>
+                    </div>
+
+                    <div class="condition-group">
+                        <label>Attacker Building:</label>
+                        <select id="attackerBuilding">
+                            <option value="None">None</option>
+                            <option value="Castle Garrison">Castle Garrison</option>
+                            <option value="Outpost Garrison">Outpost Garrison</option>
+                            <option value="Harbor Garrison">Harbor Garrison</option>
+                            <option value="Bloodshrine Garrison">Bloodshrine Garrison</option>
+                            <option value="Outer Castle">Outer Castle</option>
+                            <option value="Outer Outpost">Outer Outpost</option>
+                            <option value="Outer Harbor">Outer Harbor</option>
+                            <option value="Outer Bloodshrine">Outer Bloodshrine</option>
+                        </select>
+                    </div>
+
+                    <div class="condition-group">
+                        <label>Defender Building:</label>
+                        <select id="defenderBuilding">
+                            <option value="None">None</option>
+                            <option value="Castle Garrison">Castle Garrison</option>
+                            <option value="Outpost Garrison">Outpost Garrison</option>
+                            <option value="Harbor Garrison">Harbor Garrison</option>
+                            <option value="Bloodshrine Garrison">Bloodshrine Garrison</option>
+                            <option value="Outer Castle">Outer Castle</option>
+                            <option value="Outer Outpost">Outer Outpost</option>
+                            <option value="Outer Harbor">Outer Harbor</option>
+                            <option value="Outer Bloodshrine">Outer Bloodshrine</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button onclick="clearForm()" class="clear-btn">
+                Clear Form
+            </button>
+            <button onclick="loadPreset()" class="preset-btn">
+                Quick Preset
+            </button>
+            <button id="calculateBtn" onclick="submitBattle()" class="calculate-btn">
+                Calculate Battle
+            </button>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="results-section"></div>
+    </div>
+
+    <script>
+        const leaderMap = {
+            "Empire": ["Legionaire", "Imperial guard"],
+            "Raiders": ["Lord of the Swamp", "Lord of the Tides"],
+            "HORDE": ["Shaiyan Battleborn", "Throgg Stoneface"],
+            "Ironborne": ["Death Knight", "Silverbolt"],
+            "Vanguard": ["Duke", "Archer"],
+            "Damned": ["Plaguebringer", "Banshee King"]
+        };
+
+        const unitMap = {
+            "Empire": ["Ranger", "Sentinel", "Siege Tower", "Corvette", "Galley"],
+            "Raiders": ["Raider", "Hunter", "Ballista", "Marauder", "Bireme"],
+            "HORDE": ["Bearzerker", "Yotes", "Battering Ram", "Warship", "Karve"],
+            "Ironborne": ["Guardian", "Crossbowmen", "Trebuchet", "Ironclad", "Cruiser"],
+            "Vanguard": ["Swordsman", "Knight", "Catapult", "Destroyer", "Frigate"],
+            "Damned": ["Thrall", "Lost Soul", "Harvestor", "Dreadnaught", "Haunter"]
+        };
+
+        function toggleLeaderCheckbox(side) {
+            const leaderSelect = document.getElementById(`${side}Leader`);
+            const checkboxContainer = document.getElementById(`${side}LeaderCheckboxContainer`);
+
+            if (leaderSelect.value === "") {
+                checkboxContainer.style.display = "none";
+            } else {
+                checkboxContainer.style.display = "block";
+            }
+        }
+
+        function updateUnitLabels(side) {
+            const faction = document.getElementById(`${side}Faction`).value;
+            const container = document.getElementById(`${side}Units`);
+            const unitTypes = unitMap[faction];
+            const leaderDropdown = document.getElementById(`${side}Leader`);
+
+            container.innerHTML = "";
+            unitTypes.forEach(unit => {
+                const row = document.createElement("div");
+                row.classList.add("unit-row");
+
+                const label = document.createElement("label");
+                label.textContent = unit;
+
+                const input = document.createElement("input");
+                input.type = "number";
+                input.min = 0;
+                input.placeholder = "0";
+                input.dataset.unitName = unit;
+
+                row.appendChild(label);
+                row.appendChild(input);
+                container.appendChild(row);
+            });
+
+            // Update leader dropdown
+            if (leaderDropdown) {
+                leaderDropdown.innerHTML = "";
+
+                // Add "None" option
+                const noneOption = document.createElement("option");
+                noneOption.value = "";
+                noneOption.textContent = "None";
+                leaderDropdown.appendChild(noneOption);
+
+                // Add faction leaders
+                if (leaderMap[faction]) {
+                    leaderMap[faction].forEach(leader => {
+                        const option = document.createElement("option");
+                        option.value = leader;
+                        option.textContent = leader;
+                        leaderDropdown.appendChild(option);
+                        noneOption.selected = true;
+                    });
+                }
+            }
+            toggleLeaderCheckbox(side);
+        }
+
+        function gatherArmyData(side) {
+            const faction = document.getElementById(`${side}Faction`).value;
+            const inputs = document.getElementById(`${side}Units`).querySelectorAll("input");
+
+            const units = [];
+            inputs.forEach(input => {
+                const unit = input.dataset.unitName;
+                const qty = parseInt(input.value || 0);
+                if (qty > 0) {
+                    units.push(`${unit} x${qty}`);
+                }
+            });
+
+            return {
+                faction: faction,
+                origin_tile: document.getElementById(side === "attacker" ? "attackingFrom" : "battleTile").value,
+                building: document.getElementById(`${side}Building`).value,
+                leader: document.getElementById(`${side}Leader`)?.value || null,
+                leader_ability_active: document.getElementById(`${side}LeaderActive`)?.checked || false,
+                units: units
+            };
+        }
+
+        function gatherSupporterData() {
+            const supporterDivs = document.querySelectorAll(".supporter-card");
+            const supporters = [];
+
+            supporterDivs.forEach((div) => {
+                const faction = div.querySelector(".supporter-faction").value;
+                const supportingSide = div.querySelector(".supporting-side").value;
+                const origin_tile = div.querySelector(".supporter-origin").value;
+                const building = div.querySelector(".supporter-building").value || null;
+                const leader = div.querySelector(".supporter-leader").value || null;
+                const leader_ability_active = div.querySelector(".supporter-leader-active").checked;
+
+                const unitInputs = div.querySelectorAll(".supporter-units input");
+                const units = [];
+                unitInputs.forEach(input => {
+                    const unitName = input.dataset.unitName;
+                    const qty = parseInt(input.value || 0);
+                    if (qty > 0) {
+                        units.push(`${unitName} x${qty}`);
+                    }
+                });
+
+                if (faction && supportingSide && units.length > 0) {
+                    supporters.push({
+                        faction,
+                        supporting: supportingSide,
+                        origin_tile,
+                        building,
+                        leader,
+                        leader_ability_active,
+                        units
+                    });
+                }
+            });
+
+            return supporters;
+        }
+
+        function addSupporter() {
+            const container = document.getElementById("supportersContainer");
+            
+            // Remove the "no supporters" message
+            const noSupporters = container.querySelector(".no-supporters");
+            if (noSupporters) {
+                noSupporters.remove();
+            }
+
+            const supporterId = Date.now();
+            const div = document.createElement("div");
+            div.classList.add("supporter-card");
+            div.dataset.supporterId = supporterId;
+
+            div.innerHTML = `
+                <div class="supporter-header">
+                    <h4>Supporting Army</h4>
+                    <button onclick="removeSupporter(${supporterId})" class="remove-supporter-btn">
+                    </button>
+                </div>
+                <div class="supporter-content">
+                    <div class="supporter-row">
+                        <div class="supporter-field">
+                            <label>Faction:</label>
+                            <select class="supporter-faction" onchange="updateSupporterUnits(this, ${supporterId})">
+                                ${Object.keys(unitMap).map(f => `<option value="${f}">${f}</option>`).join("")}
+                            </select>
+                        </div>
+                        <div class="supporter-field">
+                            <label>Supports:</label>
+                            <select class="supporting-side">
+                                <option value="attackers">Attackers</option>
+                                <option value="defenders">Defenders</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="supporter-row">
+                        <div class="supporter-field">
+                            <label>Origin Tile:</label>
+                            <select class="supporter-origin">
+                                <option value="Plains">Plains</option>
+                                <option value="Forest">Forest</option>
+                                <option value="Hills">Hills</option>
+                                <option value="Sea">Sea</option>
+                            </select>
+                        </div>
+                        <div class="supporter-field">
+                            <label>Building:</label>
+                            <select class="supporter-building">
+                                <option value="None">None</option>
+                                <option value="Castle Garrison">Castle Garrison</option>
+                                <option value="Outpost Garrison">Outpost Garrison</option>
+                                <option value="Harbor Garrison">Harbor Garrison</option>
+                                <option value="Bloodshrine Garrison">Bloodshrine Garrison</option>
+                                <option value="Outer Castle">Outer Castle</option>
+                                <option value="Outer Outpost">Outer Outpost</option>
+                                <option value="Outer Harbor">Outer Harbor</option>
+                                <option value="Outer Bloodshrine">Outer Bloodshrine</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="supporter-leader-section">
+                        <label>Leader:</label>
+                        <select class="supporter-leader"></select>
+                        <label class="leader-checkbox">
+                            <input type="checkbox" class="supporter-leader-active"> Leader Ability Active
+                        </label>
+                    </div>
+                    <div class="supporter-units" id="supporter-units-${supporterId}"></div>
+                </div>
+            `;
+
+            container.appendChild(div);
+            updateSupporterUnits(div.querySelector(".supporter-faction"), supporterId);
+        }
+
+        function removeSupporter(supporterId) {
+            const supporter = document.querySelector(`[data-supporter-id="${supporterId}"]`);
+            if (supporter) {
+                supporter.remove();
+                
+                // Check if no supporters remain
+                const container = document.getElementById("supportersContainer");
+                const remainingSupporters = container.querySelectorAll(".supporter-card");
+                if (remainingSupporters.length === 0) {
+                    container.innerHTML = `
+                        <div class="no-supporters">
+                            <span class="info-icon">i</span>
+                            <p>No supporting armies added yet. Click "Add Supporter" to include additional forces.</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function updateSupporterUnits(selectElement, supporterId) {
+            const faction = selectElement.value;
+            const unitList = unitMap[faction] || [];
+            const unitContainer = document.getElementById(`supporter-units-${supporterId}`);
+            const leaderDropdown = selectElement.closest('.supporter-card').querySelector(".supporter-leader");
+
+            // Units
+            unitContainer.innerHTML = "";
+            unitList.forEach(unit => {
+                const row = document.createElement("div");
+                row.classList.add("unit-row");
+
+                const label = document.createElement("label");
+                label.textContent = unit;
+
+                const input = document.createElement("input");
+                input.type = "number";
+                input.min = 0;
+                input.placeholder = "0";
+                input.dataset.unitName = unit;
+
+                row.appendChild(label);
+                row.appendChild(input);
+                unitContainer.appendChild(row);
+            });
+
+            // Leaders
+            leaderDropdown.innerHTML = "";
+
+            // Add "None" option
+            const noneOption = document.createElement("option");
+            noneOption.value = "";
+            noneOption.textContent = "None";
+            leaderDropdown.appendChild(noneOption);
+            noneOption.selected = true;
+
+            // Add leaders for the selected faction
+            if (leaderMap[faction]) {
+                leaderMap[faction].forEach(leader => {
+                    const option = document.createElement("option");
+                    option.value = leader;
+                    option.textContent = leader;
+                    leaderDropdown.appendChild(option);
+                });
+            }
+        }
+
+        function clearForm() {
+            // Clear all inputs
+            document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
+            document.querySelectorAll('select').forEach(select => {
+                if (select.id.includes('Faction')) {
+                    select.selectedIndex = 0;
+                } else if (select.id.includes('Leader')) {
+                    select.selectedIndex = 0;
+                }
+            });
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+            
+            // Clear supporters
+            const container = document.getElementById("supportersContainer");
+            container.innerHTML = `
+                <div class="no-supporters">
+                    <span class="info-icon">i</span>
+                    <p>No supporting armies added yet. Click "Add Supporter" to include additional forces.</p>
+                </div>
+            `;
+            
+            // Reset unit labels
+            updateUnitLabels('attacker');
+            updateUnitLabels('defender');
+            
+            // Clear results
+            document.getElementById('results').innerHTML = '';
+            
+            showNotification('Form cleared successfully!', 'success');
+        }
+
+        function loadPreset() {
+            // Set a sample battle configuration
+            document.getElementById('attackerFaction').value = 'Vanguard';
+            document.getElementById('defenderFaction').value = 'Empire';
+            
+            updateUnitLabels('attacker');
+            updateUnitLabels('defender');
+            
+            // Set some sample units
+            const attackerUnits = document.getElementById('attackerUnits');
+            attackerUnits.querySelector('input[data-unit-name="Swordsman"]').value = '10';
+            attackerUnits.querySelector('input[data-unit-name="Knight"]').value = '5';
+            
+            const defenderUnits = document.getElementById('defenderUnits');
+            defenderUnits.querySelector('input[data-unit-name="Ranger"]').value = '8';
+            defenderUnits.querySelector('input[data-unit-name="Sentinel"]').value = '6';
+            
+            showNotification('Sample battle loaded!', 'info');
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <span class="notification-icon">${type === 'success' ? '' : type === 'error' ? '' : ''}</span>
+                <span class="notification-text">${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        function validateForm() {
+            const attackers = gatherArmyData("attacker");
+            const defenders = gatherArmyData("defender");
+            
+            if (attackers.units.length === 0) {
+                showNotification('Please add units to the attacker army!', 'error');
+                return false;
+            }
+            
+            if (defenders.units.length === 0) {
+                showNotification('Please add units to the defender army!', 'error');
+                return false;
+            }
+            
+            return true;
+        }
+
+        async function submitBattle() {
+            if (!validateForm()) {
+                return;
+            }
+
+            const attackers = gatherArmyData("attacker");
+            const defenders = gatherArmyData("defender");
+            const supporters = gatherSupporterData();
+
+            console.log("[DEBUG] Sending Attackers:", attackers);
+            console.log("[DEBUG] Sending Defenders:", defenders);
+            console.log("[DEBUG] Sending Supporters:", supporters);
+
+            // Show loading state
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = '<div class="loading">Calculating Battle Results...</div>';
+
+            try {
+                const response = await fetch("https://hexwars-api.onrender.com/calculate_battle", {
+                    method: "POST",
+                    mode: "cors",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({
+                        attackers: attackers,
+                        defenders: defenders,
+                        supporters: supporters
+                    })
+                });
+
+                console.log("[DEBUG] Fetch response:", response);
+
+                if (!response.ok) {
+                    resultsDiv.innerHTML = '<div class="results-card" style="text-align: center; color: #ff4444; padding: 20px;">Error submitting battle. Please try again.</div>';
+                    return;
+                }
+
+                const data = await response.json();
+                console.log("[DEBUG] Parsed JSON response:", data);
+
+                resultsDiv.innerHTML = `
+                    <div class="results-wrapper">
+                        <div class="results-card">
+                            <div class="battle-results">
+                                <h2>BATTLE RESULTS </h2>
+                                <h3 style="color: ${data.battle_results.winner === 'Attackers' ? '#ff4444' : (data.battle_results.winner === 'Defenders' ? '#44ff44' : '#888888')}">
+                                    ${data.battle_results.winner === 'Tie' ? "It's a Tie!" : `${data.battle_results.winner} Victory!`}
+                                </h3>
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <div class="stat-label">Attacker Power</div>
+                                        <div class="stat-value">${data.battle_results.attacker_power}</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">Defender Power</div>
+                                        <div class="stat-value">${data.battle_results.defender_power}</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">Power Difference</div>
+                                        <div class="stat-value">${data.battle_results.power_diff}</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">Power Difference %</div>
+                                        <div class="stat-value">${data.battle_results.power_diff_percentage}%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="attackers-section">
+                                <h3>ATTACKERS </h3>
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <div class="stat-label">Battle Power</div>
+                                        <div class="stat-value">${data.attackers.battle_power}</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">Supporters Power</div>
+                                        <div class="stat-value">${data.attackers.supporters_power}</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">TCP Modifier</div>
+                                        <div class="stat-value">${data.attackers.tcp_modifier}</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">TCP</div>
+                                        <div class="stat-value">${data.attackers.tcp}</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">Total Lost Units</div>
+                                        <div class="stat-value">${data.attackers.total_lost_units}</div>
+                                    </div>
+                                </div>
+                                
+                                ${(data.attackers.cavalry_charge_losses.basic > 0 || data.attackers.cavalry_charge_losses.special > 0 || data.attackers.cavalry_charge_losses.siege > 0) ? `
+                                    <div class="remaining-army">
+                                        <h4>Lost to Cavalry Charge</h4>
+                                        <ul class="army-list">
+                                            <li>Basic: ${data.attackers.cavalry_charge_losses.basic}</li>
+                                            <li>Special: ${data.attackers.cavalry_charge_losses.special}</li>
+                                            <li>Siege: ${data.attackers.cavalry_charge_losses.siege}</li>
+                                        </ul>
+                                    </div>
+                                ` : ''}
+                                <div class="remaining-army">
+                                    <h4>Remaining Army</h4>
+                                    <ul class="army-list">
+                                        <li>Basic: ${data.attackers.remaining_army.basic}</li>
+                                        <li>Special: ${data.attackers.remaining_army.special}</li>
+                                        <li>Siege: ${data.attackers.remaining_army.siege}</li>
+                                        <li>Combat Ship: ${data.attackers.remaining_army.combat_ship}</li>
+                                        <li>Transport Ship: ${data.attackers.remaining_army.transport_ship}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="defenders-section">
+                                <h3>DEFENDERS </h3>
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <div class="stat-label">Battle Power</div>
+                                        <div class="stat-value">${data.defenders.battle_power}</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">Supporters Power</div>
+                                        <div class="stat-value">${data.defenders.supporters_power}</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">TCP Modifier</div>
+                                        <div class="stat-value">${data.defenders.tcp_modifier}</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">TCP</div>
+                                        <div class="stat-value">${data.defenders.tcp}</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">Total Lost Units</div>
+                                        <div class="stat-value">${data.defenders.total_lost_units}</div>
+                                    </div>
+                                </div>
+                                
+                                ${(data.defenders.cavalry_charge_losses.basic > 0 || data.defenders.cavalry_charge_losses.special > 0 || data.defenders.cavalry_charge_losses.siege > 0) ? `
+                                    <div class="remaining-army">
+                                        <h4>Lost to Cavalry Charge</h4>
+                                        <ul class="army-list">
+                                            <li>Basic: ${data.defenders.cavalry_charge_losses.basic}</li>
+                                            <li>Special: ${data.defenders.cavalry_charge_losses.special}</li>
+                                            <li>Siege: ${data.defenders.cavalry_charge_losses.siege}</li>
+                                        </ul>
+                                    </div>
+                                ` : ''}
+                                <div class="remaining-army">
+                                    <h4>Remaining Army</h4>
+                                    <ul class="army-list">
+                                        <li>Basic: ${data.defenders.remaining_army.basic}</li>
+                                        <li>Special: ${data.defenders.remaining_army.special}</li>
+                                        <li>Siege: ${data.defenders.remaining_army.siege}</li>
+                                        <li>Combat Ship: ${data.defenders.remaining_army.combat_ship}</li>
+                                        <li>Transport Ship: ${data.defenders.remaining_army.transport_ship}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            ${data.special_results ? `
+                                <div class="special-results">
+                                    <h3>ADDITIONAL RESULTS </h3>
+                                    ${data.special_results.lost_souls ? `
+                                        <div class="stat-item" style="max-width: 200px; margin: 0 auto;">
+                                            <div class="stat-label">Lost Souls Collected</div>
+                                            <div class="stat-value">${data.special_results.lost_souls}</div>
+                                        </div>
+                                    ` : ''}
+                                    ${data.special_results.resources_collected ? `
+                                        <div class="resources-grid">
+                                            <div class="resource-item">
+                                                <div class="resource-label">Food</div>
+                                                <div class="resource-value">${data.special_results.resources_collected.food}</div>
+                                            </div>
+                                            <div class="resource-item">
+                                                <div class="resource-label">Gold</div>
+                                                <div class="resource-value">${data.special_results.resources_collected.gold}</div>
+                                            </div>
+                                            <div class="resource-item">
+                                                <div class="resource-label">Iron</div>
+                                                <div class="resource-value">${data.special_results.resources_collected.iron}</div>
+                                            </div>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                console.error("[DEBUG] Error:", error);
+                resultsDiv.innerHTML = '<div class="results-card" style="text-align: center; color: #ff4444; padding: 20px;">Network error. Please check your connection and try again.</div>';
+            }
+        }
+
+        // Initialize the form
+        updateUnitLabels('attacker');
+        updateUnitLabels('defender');
+
+        // Account menu functionality
+        (function(){
+            const accountBtn = document.getElementById('accountBtn');
+            const accountMenu = document.getElementById('accountMenu');
+            const accountLabel = document.getElementById('accountLabel');
+            const accountAction = document.getElementById('accountAction');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            function isLoggedIn() {
+                try { return !!JSON.parse(localStorage.getItem('currentUser') || 'null'); } catch { return false; }
+            }
+
+            function syncAccountUI() {
+                if (!accountLabel || !accountAction || !logoutBtn) return;
+                if (isLoggedIn()) {
+                    accountLabel.textContent = 'Account';
+                    accountAction.style.display = 'block';
+                    logoutBtn.style.display = 'block';
+                } else {
+                    accountLabel.textContent = 'Account';
+                    accountAction.style.display = 'none';
+                    logoutBtn.style.display = 'none';
+                }
+            }
+
+            // Account dropdown now works with hover like other dropdowns
+            // No need for click handlers since it uses CSS hover
+            if (logoutBtn) logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('currentUser');
+                syncAccountUI();
+                window.location.href = './';
+            });
+            syncAccountUI();
+        })();
+    </script>
+</body>
+
+</html>

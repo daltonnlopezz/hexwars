@@ -2,36 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEX Wars - Character Builder</title>
+    <title>WARFORGE - Character Builder</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <!-- Logo -->
-    <div class="logo-container">
-        <img src="static/images/logo.jpg" alt="HEX Wars Logo" class="logo-image" />
-    </div>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="./" aria-label="WARFORGE home">
+                <span class="brand-name">WARFORGE</span>
+            </a>
+            <nav class="topnav-center">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-trigger" href="lore.html">Lore ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="lore.html">All Lore</a>
+                        <a href="factions.html">Factions</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-trigger" href="tools.html">Game Tools ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="factions.html">Factions</a>
+                        <a href="battle-calculator.html">Battle Calculator</a>
+                        <a href="resources.html">Resource Calculator</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="nav-right">
+                <a class="nav-link" href="updates.html">Dev Diary</a>
+                <a class="nav-link" href="shop.html">Shop</a>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-trigger" href="about.html">About ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="about.html">About WARFORGE</a>
+                        <a href="updates.html">Updates</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <h1>HEX WARS - CHARACTER BUILDER</h1>
+    <h1>WARFORGE - CHARACTER BUILDER</h1>
     
-    <!-- Navigation Card -->
-    <div class="nav-card">
-        <a href="index.html" class="nav-btn battle-btn">
-            <span class="btn-text">Battle Calculator</span>
-        </a>
-        <a href="factions.html" class="nav-btn factions-btn">
-            <span class="btn-text">Faction Details</span>
-        </a>
-        <a href="login.html" class="nav-btn login-btn">
-            <span class="btn-text">Character Creation</span>
-        </a>
-        <a href="character.html" class="nav-btn character-btn">
-            <span class="btn-text">My Characters</span>
-        </a>
-    </div>
-
-    <div class="calculator-container">
+        <div class="calculator-container">
         <div class="army-card">
             <div class="card-header character-header">
                 <h2>Create Your Hero</h2>

@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEX Wars — Game Tools</title>
+    <title>WARFORGE — Game Tools</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="topbar">
         <div class="topbar-inner">
-            <a class="brand" href="homepage.html" aria-label="HEX Wars Home">
-                <img src="static/images/logo.jpg" alt="HEX Wars Logo">
-                <span class="brand-name">HEX Wars</span>
+            <a class="brand" href="./" aria-label="WARFORGE home">
+                <span class="brand-name">WARFORGE</span>
             </a>
             <nav class="topnav-center">
                 <div class="dropdown">
@@ -25,29 +24,19 @@
                     <a class="nav-link dropdown-trigger" href="tools.html">Game Tools ▾</a>
                     <div class="dropdown-menu">
                         <a href="factions.html">Factions</a>
-                        <a href="index.html">Battle Calculator</a>
+                        <a href="battle-calculator.html">Battle Calculator</a>
                         <a href="resources.html">Resource Calculator</a>
                     </div>
                 </div>
             </nav>
             <div class="nav-right">
+                <a class="nav-link" href="updates.html">Dev Diary</a>
                 <a class="nav-link" href="shop.html">Shop</a>
                 <div class="dropdown">
                     <a class="nav-link dropdown-trigger" href="about.html">About ▾</a>
                     <div class="dropdown-menu">
-                        <a href="about.html">About HEX Wars</a>
+                        <a href="about.html">About WARFORGE</a>
                         <a href="updates.html">Updates</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button id="accountBtn" class="account-btn dropdown-trigger"><span id="accountLabel">Account</span> ▾</button>
-                    <div id="accountMenu" class="account-menu dropdown-menu" aria-hidden="true">
-                        <a href="login.html">Login</a>
-                        <a href="register.html">Sign Up</a>
-                        <a href="#">Support</a>
-                        <a href="#">Account Settings</a>
-                        <a id="accountAction" href="character-selection.html" style="display:none;">Account Home</a>
-                        <button id="logoutBtn" style="display:none;">Logout</button>
                     </div>
                 </div>
             </div>
@@ -59,7 +48,7 @@
             <h2>Game Tools Overview</h2>
         </div>
         <div class="card-content">
-            <p>Explore HEX Wars tools for planning battles, managing kingdoms, and researching factions. Each tool below includes a quick overview and how-to.</p>
+            <p>Explore WARFORGE tools for planning battles, managing kingdoms, and researching factions. Each tool below includes a quick overview and how-to.</p>
         </div>
     </div>
 
@@ -77,7 +66,7 @@
                     <li>Optional: add supporters and leaders.</li>
                     <li>Click Calculate to view detailed results.</li>
                 </ul>
-                <a class="story-link" href="index.html">Open Battle Calculator</a>
+                <a class="story-link" href="battle-calculator.html">Open Battle Calculator</a>
             </div>
         </div>
 
@@ -121,6 +110,7 @@
             }
 
             function syncAccountUI() {
+                if (!accountLabel || !accountAction || !logoutBtn) return;
                 if (isLoggedIn()) {
                     accountLabel.textContent = 'Account';
                     accountAction.style.display = 'block';
@@ -132,21 +122,21 @@
                 }
             }
 
-            accountBtn.addEventListener('click', () => {
+            if (accountBtn) accountBtn.addEventListener('click', () => {
                 const open = accountMenu.classList.toggle('show');
                 accountMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
             });
             document.addEventListener('click', (e) => {
-                if (!accountMenu.contains(e.target) && e.target !== accountBtn) {
+                if (accountMenu && !accountMenu.contains(e.target) && e.target !== accountBtn) {
                     accountMenu.classList.remove('show');
                     accountMenu.setAttribute('aria-hidden', 'true');
                 }
             });
-            logoutBtn.addEventListener('click', () => {
+            if (logoutBtn) logoutBtn.addEventListener('click', () => {
                 localStorage.removeItem('currentUser');
                 accountMenu.classList.remove('show');
                 syncAccountUI();
-                window.location.href = 'homepage.html';
+                window.location.href = './';
             });
             syncAccountUI();
         })();
